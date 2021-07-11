@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ data.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #01141b">
+  <ion-card (click)="presentAlert(data)" style="--background: #03384c">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-text>{{ data.name }}</ion-text>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <ion-text>
+          <b style="font-size: 25px">{{ data.buy }}</b>
+        </ion-text>
+        <ion-text>
+          <b style="font-size: 25px">{{ data.sell }}</b>
+        </ion-text>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <ion-text> <b>Open: </b>{{ data.open }} </ion-text>
+        <ion-text> <b>Last: </b>{{ data.last }} </ion-text>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <ion-text> <b>High: </b>{{ data.high }} </ion-text>
+        <ion-text> <b>Low: </b>{{ data.low }} </ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card (click)="presentAlert(data)" style="--background: #03384c">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-text>{{ data.name }}</ion-text>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <ion-text>
+          <b style="font-size: 25px">
+            {{ convert(data.buy) - convert(data.buy) * 0.0133 | number: '1.0-3'
+            }}
+          </b>
+        </ion-text>
+        <ion-text>
+          <b style="font-size: 25px">
+            {{ convert(data.sell) + convert(data.sell) * 0.0133 | number:
+            '1.0-3' }}
+          </b>
+        </ion-text>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <ion-text> <b>Open: </b>{{ data.open }} </ion-text>
+        <ion-text> <b>Last: </b>{{ data.last }} </ion-text>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <ion-text> <b>High: </b>{{ data.high }} </ion-text>
+        <ion-text> <b>Low: </b>{{ data.low }} </ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

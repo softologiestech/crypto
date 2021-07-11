@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #01141b">
+  <app-login *ngIf="!id"></app-login>
+  <app-profile *ngIf="id"></app-profile>
+</ion-content>

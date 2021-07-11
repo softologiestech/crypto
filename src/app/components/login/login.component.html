@@ -1,0 +1,28 @@
+<div class="container">
+  <ion-item style="--background: #01141b; width: 90%; --border-color: white">
+    <ion-label position="floating" style="color: white">Username</ion-label>
+    <ion-input
+      style="color: white"
+      type="username"
+      [(ngModel)]="username"
+      required="true"
+    ></ion-input>
+  </ion-item>
+  <ion-item style="--background: #01141b; width: 90%; --border-color: white">
+    <ion-label position="floating" style="color: white">Password</ion-label>
+    <ion-input
+      style="color: white"
+      type="password"
+      [(ngModel)]="password"
+      required="true"
+      minlength="6"
+    ></ion-input>
+  </ion-item>
+  <ion-button
+    color="primary"
+    (click)="login()"
+    style="height: 50px; width: 90%; margin: 10px 0"
+  >
+    <ion-text style="font-size: 20px"> Login </ion-text>
+  </ion-button>
+</div>

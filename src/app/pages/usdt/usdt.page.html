@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>USDT</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #01141b">
+  <ion-virtual-scroll [items]="data | keyvalue" [itemHeight]="itemHeightFn">
+    <ion-card
+      *virtualItem="let d"
+      (click)="gotodata(d)"
+      style="--background: #03384c"
+    >
+      <ion-card-header>
+        <ion-card-title> {{ d.value['name'] }} </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <ion-text>
+            <b style="font-size: 25px">{{ d.value['buy'] }}</b>
+          </ion-text>
+          <ion-text>
+            <b style="font-size: 25px">{{ d.value['sell'] }}</b>
+          </ion-text>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <ion-text> <b>Open: </b>{{ d.value['open'] }} </ion-text>
+          <ion-text> <b>Last: </b>{{ d.value['last'] }} </ion-text>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <ion-text> <b>High: </b>{{ d.value['high'] }} </ion-text>
+          <ion-text> <b>Low: </b>{{ d.value['low'] }} </ion-text>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-virtual-scroll>
+</ion-content>
