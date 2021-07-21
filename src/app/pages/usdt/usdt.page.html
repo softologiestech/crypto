@@ -5,14 +5,20 @@
 </ion-header>
 
 <ion-content style="--background: #01141b">
-  <ion-virtual-scroll [items]="data | keyvalue" [itemHeight]="itemHeightFn">
+  <ion-virtual-scroll
+    [items]="displaySym | keyvalue"
+    [itemHeight]="itemHeightFn"
+    *ngIf="id"
+  >
     <ion-card
       *virtualItem="let d"
       (click)="gotodata(d)"
       style="--background: #03384c"
     >
       <ion-card-header>
-        <ion-card-title> {{ d.value['name'] }} </ion-card-title>
+        <ion-card-title>
+          <ion-text>{{ d.value['name'] }}</ion-text>
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <div
@@ -23,10 +29,14 @@
           "
         >
           <ion-text>
-            <b style="font-size: 25px">{{ d.value['buy'] }}</b>
+            <b style="font-size: 25px"
+              >{{ d.value['buy'] | number: "1.0-4" }}</b
+            >
           </ion-text>
           <ion-text>
-            <b style="font-size: 25px">{{ d.value['sell'] }}</b>
+            <b style="font-size: 25px"
+              >{{ d.value['sell'] | number: "1.0-4" }}</b
+            >
           </ion-text>
         </div>
         <div
@@ -36,8 +46,12 @@
             justify-content: space-between;
           "
         >
-          <ion-text> <b>Open: </b>{{ d.value['open'] }} </ion-text>
-          <ion-text> <b>Last: </b>{{ d.value['last'] }} </ion-text>
+          <ion-text>
+            <b>Open: </b>{{ d.value['open'] | number: "1.0-4" }}
+          </ion-text>
+          <ion-text>
+            <b>Last: </b>{{ d.value['last'] | number: "1.0-4" }}
+          </ion-text>
         </div>
         <div
           style="
@@ -46,10 +60,28 @@
             justify-content: space-between;
           "
         >
-          <ion-text> <b>High: </b>{{ d.value['high'] }} </ion-text>
-          <ion-text> <b>Low: </b>{{ d.value['low'] }} </ion-text>
+          <ion-text>
+            <b>High: </b>{{ d.value['high'] | number: "1.0-4" }}
+          </ion-text>
+          <ion-text>
+            <b>Low: </b>{{ d.value['low'] | number: "1.0-4" }}
+          </ion-text>
         </div>
       </ion-card-content>
     </ion-card>
   </ion-virtual-scroll>
+  <div
+    style="
+      height: 90vh;
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+    *ngIf="!id"
+  >
+    <ion-text style="font-size: 24px; color: white; text-align: center">
+      You must be logged in to your account to view and start trades.
+    </ion-text>
+  </div>
 </ion-content>

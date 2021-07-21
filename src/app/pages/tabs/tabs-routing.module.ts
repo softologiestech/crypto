@@ -33,6 +33,16 @@ const routes: Routes = [
         loadChildren: () =>
           import('../profile/profile.module').then((m) => m.ProfilePageModule),
       },
+      {
+        path: 'trade',
+        loadChildren: () =>
+          import('../trade/trade.module').then((m) => m.TradePageModule),
+      },
+      {
+        path: 'history',
+        loadChildren: () =>
+          import('../history/history.module').then((m) => m.HistoryPageModule),
+      },
     ],
   },
 ];

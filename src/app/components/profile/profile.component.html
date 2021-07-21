@@ -1,3 +1,17 @@
-<p>
-  profile works!
-</p>
+<div style="margin: 15px; display: flex; flex-direction: column">
+  <ion-text> <b>Name: </b>{{ userData.name | titlecase }} </ion-text>
+  <ion-text> <b>ID: </b>{{ userData.id }} </ion-text>
+  <ion-text> <b>UID: </b>{{ userData.uid }} </ion-text>
+  <ion-text> <b>Created At: </b>{{ userData.createdAt | date }} </ion-text>
+  <ion-text> <b>Created By: </b>{{ userData.createdBy }} </ion-text>
+  <ion-text> <b>Email ID: </b>{{ userData.email }} </ion-text>
+  <ion-text> <b>Phone: </b>{{ userData.phone }} </ion-text>
+  <ion-text>
+    <b>Amount in Wallet: </b>{{ userData.amountInWallet | number: "1.0-2" }}
+  </ion-text>
+  <ion-item (click)="goto()" style="--background: #01141b">
+    <ion-text>
+      <span style="color: white">Wallet Transactions</span>
+    </ion-text>
+  </ion-item>
+</div>

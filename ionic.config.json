@@ -1,5 +1,5 @@
 {
-  "name": "msx",
+  "name": "crypto",
   "integrations": {
     "capacitor": {},
     "cordova": {}

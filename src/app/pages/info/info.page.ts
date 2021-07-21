@@ -28,8 +28,11 @@ export class InfoPage implements OnInit {
 
         for (var key in array) {
           if (array[key]['name'] === this.info.value['name']) {
-            this.data = array[key];
-            // console.log(array[key]);
+            this.data = {
+              ...array[key],
+              margin: this.info.value['margin'],
+              lot_size: this.info.value['lot_size'],
+            };
           }
         }
 
@@ -39,7 +42,7 @@ export class InfoPage implements OnInit {
   }
 
   convert(val) {
-    return parseInt(val);
+    return parseFloat(val);
   }
 
   async presentAlert(d: any) {
@@ -68,5 +71,17 @@ export class InfoPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  goto(d: any) {
+    this.router.navigate(['/new-order'], {
+      state: d,
+    });
+  }
+
+  goto1(d: any) {
+    this.router.navigate(['/new-order1'], {
+      state: d,
+    });
   }
 }

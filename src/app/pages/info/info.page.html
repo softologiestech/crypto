@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content style="--background: #01141b">
-  <ion-card (click)="presentAlert(data)" style="--background: #03384c">
+  <ion-card (click)="goto(data)" style="--background: #03384c">
     <ion-card-header>
       <ion-card-title>
         <ion-text>{{ data.name }}</ion-text>
@@ -47,12 +47,13 @@
         "
       >
         <ion-text> <b>High: </b>{{ data.high }} </ion-text>
+        <ion-text> <b>Lot Size: </b>{{ data.lot_size }} </ion-text>
         <ion-text> <b>Low: </b>{{ data.low }} </ion-text>
       </div>
     </ion-card-content>
   </ion-card>
 
-  <ion-card (click)="presentAlert(data)" style="--background: #03384c">
+  <ion-card (click)="goto1(data)" style="--background: #03384c">
     <ion-card-header>
       <ion-card-title>
         <ion-text>{{ data.name }}</ion-text>
@@ -68,13 +69,13 @@
       >
         <ion-text>
           <b style="font-size: 25px">
-            {{ convert(data.buy) - convert(data.buy) * 0.0133 | number: '1.0-3'
-            }}
+            {{ convert(data.buy) - convert(data.buy *1.67 / 100) | number:
+            '1.0-3' }}
           </b>
         </ion-text>
         <ion-text>
           <b style="font-size: 25px">
-            {{ convert(data.sell) + convert(data.sell) * 0.0133 | number:
+            {{ convert(data.sell) + convert(data.sell *1.67 / 100) | number:
             '1.0-3' }}
           </b>
         </ion-text>
@@ -97,6 +98,7 @@
         "
       >
         <ion-text> <b>High: </b>{{ data.high }} </ion-text>
+        <ion-text> <b>Lot Size: </b>{{ data.lot_size }} </ion-text>
         <ion-text> <b>Low: </b>{{ data.low }} </ion-text>
       </div>
     </ion-card-content>

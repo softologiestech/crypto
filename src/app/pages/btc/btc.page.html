@@ -5,7 +5,11 @@
 </ion-header>
 
 <ion-content style="--background: #01141b">
-  <ion-virtual-scroll [items]="data | keyvalue" [itemHeight]="itemHeightFn">
+  <ion-virtual-scroll
+    [items]="displaySym | keyvalue"
+    [itemHeight]="itemHeightFn"
+    *ngIf="id"
+  >
     <ion-card
       *virtualItem="let d"
       (click)="gotodata(d)"
@@ -49,9 +53,24 @@
           "
         >
           <ion-text> <b>High: </b>{{ d.value['high'] }} </ion-text>
+          <ion-text> <b>Lot Size: </b>{{ d.value['lot_size'] }} </ion-text>
           <ion-text> <b>Low: </b>{{ d.value['low'] }} </ion-text>
         </div>
       </ion-card-content>
     </ion-card>
   </ion-virtual-scroll>
+  <div
+    style="
+      height: 90vh;
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+    *ngIf="!id"
+  >
+    <ion-text style="font-size: 24px; color: white; text-align: center">
+      You must be logged in to your account to view and start trades.
+    </ion-text>
+  </div>
 </ion-content>

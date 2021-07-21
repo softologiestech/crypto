@@ -1,0 +1,183 @@
+<ion-header>
+  <ion-toolbar color="primary" class="ion-no-border">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title size="small">Trade</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #01141b">
+  <div style="margin: 10px">
+    <div class="main">
+      <ion-text class="first">
+        <b style="font-size: 20px; color: white">Balance</b>
+      </ion-text>
+      <ion-text style="font-size: 20px; color: white" *ngIf="id">
+        {{ userData.amountInWallet | number: '1.0-2' }}
+      </ion-text>
+    </div>
+    <div class="main">
+      <ion-text class="first">
+        <b style="font-size: 20px; color: white">Equity</b>
+      </ion-text>
+      <ion-text style="font-size: 20px; color: white" *ngIf="id">
+        {{ equity | number: '1.0-2' }}
+      </ion-text>
+    </div>
+    <div class="main">
+      <ion-text class="first">
+        <b style="font-size: 20px; color: white">Profit/Loss</b>
+      </ion-text>
+      <ion-text
+        style="font-size: 20px"
+        [color]="net > 0 ? 'primary' : 'danger'"
+        *ngIf="id"
+      >
+        {{ net | number: '1.0-2' }}
+      </ion-text>
+    </div>
+    <div class="main">
+      <ion-text class="first">
+        <b style="font-size: 20px; color: white">Margin</b>
+      </ion-text>
+      <ion-text style="font-size: 20px; color: white" *ngIf="id">
+        {{ margin | number: '1.0-2' }}
+      </ion-text>
+    </div>
+    <div class="main">
+      <ion-text class="first">
+        <b style="font-size: 20px; color: white">Free Margin</b>
+      </ion-text>
+      <ion-text style="font-size: 20px; color: white" *ngIf="id">
+        {{ free_margin | number: '1.0-2' }}
+      </ion-text>
+    </div>
+    <div class="main">
+      <ion-text class="first">
+        <b style="font-size: 20px; color: white">Net Commission</b>
+      </ion-text>
+      <ion-text style="font-size: 20px; color: white" *ngIf="id">
+        {{ net_commission | number: '1.0-2' }}
+      </ion-text>
+    </div>
+    <div style="height: 1px; background: white; margin: 15px auto"></div>
+  </div>
+
+  <ion-virtual-scroll [items]="buyDetails1" [itemHeight]="itemHeightFn">
+    <ion-card
+      *virtualItem="let data"
+      style="--background: #03384c"
+      (click)="openTrade($event, data)"
+    >
+      <ion-card-header class="ion-no-margin">
+        <ion-card-title style="font-size: 25px">
+          <b style="color: white">{{ data.name }}</b>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-text style="color: white; float: right; margin: 5px 0">
+            <b>Time:</b> {{ data.at | date: "dd-MMM-yy h:mm:ss a" }}
+          </ion-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+          "
+        >
+          <div style="display: flex; justify-content: space-between">
+            <ion-text style="color: white">
+              <b> {{ data.quantity }} </b>
+              <b>Buy: </b>
+              {{ data.buy | number: "1.0-2" }}
+            </ion-text>
+            <ion-text style="color: white">
+              <b>Lot Size: </b>
+              {{ data.lot_size | number: "1.0-2" }}
+            </ion-text>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <ion-text style="color: white" *ngIf="data.p && !data.l">
+              <b>P/L </b>
+              <span style="color: #3880ff">
+                {{ data.p | number: "1.0-2" }}
+              </span>
+            </ion-text>
+            <ion-text style="color: white" *ngIf="data.l && !data.p">
+              <b>P/L </b>
+              <span style="color: #f53d3d">
+                - {{ data.l | number: "1.0-2" }}
+              </span>
+            </ion-text>
+            <ion-text style="color: white">
+              <b>Commission </b>
+              {{ data.commission | number: "1.0-2" }}
+            </ion-text>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-virtual-scroll>
+  <ion-virtual-scroll [items]="sellDetails1" [itemHeight]="itemHeightFn">
+    <ion-card
+      *virtualItem="let data"
+      style="--background: #03384c"
+      (click)="openTrade($event, data)"
+    >
+      <ion-card-header class="ion-no-margin">
+        <ion-card-title style="font-size: 25px">
+          <b style="color: white">{{ data.name }}</b>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-text style="color: white; float: right; margin: 5px 0">
+            Time: {{ data.at | date: "dd-MMM-yy h:mm:ss a" }}
+          </ion-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+          "
+        >
+          <div style="display: flex; justify-content: space-between">
+            <ion-text style="color: white">
+              <b> {{ data.quantity }} </b>
+              <b>Buy: </b>
+              {{ data.buy | number: "1.0-2" }}
+            </ion-text>
+            <ion-text style="color: white">
+              <b>Lot Size: </b>
+              {{ data.lot_size | number: "1.0-2" }}
+            </ion-text>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <ion-text style="color: white" *ngIf="data.p && !data.l">
+              <b>P/L </b>
+              <span style="color: #3880ff">
+                {{ data.p | number: "1.0-2" }}
+              </span>
+            </ion-text>
+            <ion-text style="color: white" *ngIf="data.l && !data.p">
+              <b>P/L </b>
+              <span style="color: #f53d3d">
+                - {{ data.l | number: "1.0-2" }}
+              </span>
+            </ion-text>
+            <ion-text style="color: white">
+              <b>Commission </b>
+              {{ data.commission | number: "1.0-2" }}
+            </ion-text>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-virtual-scroll>
+</ion-content>

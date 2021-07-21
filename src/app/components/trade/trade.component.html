@@ -1,0 +1,112 @@
+<ion-card style="--background: #03384c; padding: 10px">
+  <ion-card-header class="ion-no-margin">
+    <ion-card-title style="font-size: 25px">
+      <b style="color: white">{{ tradeData.name }}</b>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div
+      style="display: flex; justify-content: space-between; align-items: center"
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+          "
+        >
+          <ion-text
+            style="font-size: 20px; font-weight: bold"
+            [color]="
+              tradeData.buy > tradeData.last_price ? 'primary' : 'danger'
+            "
+          >
+            {{ tradeData.buy | number: "1.0-2" }}
+          </ion-text>
+
+          <ion-text
+            style="font-size: 20px; font-weight: bold"
+            [color]="
+              tradeData.sell > tradeData.last_price ? 'primary' : 'danger'
+            "
+          >
+            {{ tradeData.sell | number: "1.0-2" }}
+          </ion-text>
+        </div>
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 5px;
+      "
+    >
+      <ion-button
+        fill="outline"
+        size="small"
+        color="danger"
+        expand="block"
+        (click)="subtract(10)"
+      >
+        -10
+      </ion-button>
+      <ion-button
+        fill="outline"
+        size="small"
+        color="danger"
+        expand="block"
+        (click)="subtract(1)"
+      >
+        -1
+      </ion-button>
+      <ion-text style="color: white; padding: 0px 10px">{{ counter }}</ion-text>
+      <ion-button
+        fill="outline"
+        size="small"
+        color="success"
+        expand="block"
+        (click)="add(1)"
+      >
+        +1
+      </ion-button>
+      <ion-button
+        fill="outline"
+        size="small"
+        color="success"
+        expand="block"
+        (click)="add(10)"
+      >
+        +10
+      </ion-button>
+    </div>
+    <div style="margin: 10px 0">
+      <ion-button
+        expand="block"
+        color="danger"
+        (click)="sell(data, tradeData)"
+        *ngIf="data.trade === 'buy'"
+      >
+        Sell
+      </ion-button>
+      <ion-button
+        expand="block"
+        color="danger"
+        (click)="buy(data, tradeData)"
+        *ngIf="data.trade === 'sell'"
+      >
+        Buy
+      </ion-button>
+    </div>
+    <!-- </div> -->
+  </ion-card-content>
+</ion-card>

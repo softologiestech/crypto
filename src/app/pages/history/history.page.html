@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title size="small">History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: #01141b">
+  <ion-virtual-scroll [items]="history" [itemHeight]="itemHeightFn">
+    <ion-card *virtualItem="let data" style="--background: #03384c">
+      <ion-card-header class="ion-no-margin">
+        <ion-card-title style="font-size: 25px">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <b style="color: white">{{ data.name }}</b>
+          </div>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-text style="color: white; float: right">
+            <b>Time:</b> {{ data.at | date: "dd-MMM-yy h:mm:ss a" }}
+          </ion-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              width: 100%;
+            "
+          >
+            <div style="display: flex; justify-content: space-between">
+              <ion-text style="color: white">
+                <b>Buy: </b>
+                {{ data.buy | number: "1.0-2" }}
+              </ion-text>
+              <ion-text style="color: white">
+                <b>Sell: </b>
+                {{ data.sell | number: "1.0-2" }}
+              </ion-text>
+            </div>
+            <div style="display: flex; justify-content: space-between">
+              <ion-text style="color: white">
+                <b>Commission: </b>
+                {{ data.commission | number: "1.0-2" }}
+              </ion-text>
+              <ion-text style="color: white">
+                <b>Quantity: </b>
+                {{ data.quantity }}
+              </ion-text>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-virtual-scroll>
+</ion-content>
